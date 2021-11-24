@@ -1,12 +1,16 @@
 /*
  * @Author: yu.kuai
  * @Date: 2021-11-24 11:50:40
- * @LastEditors: 
- * @LastEditTime: 2021-11-24 14:36:22
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2021-11-24 15:21:02
  * @Description: 
  */
 export default {
-  pages: ["pages/index/index", "pages/user/user"],
+  pages: [
+    "pages/login/login",
+    "pages/index/index",
+    "pages/user/user",
+  ],
   window: {
     backgroundTextStyle: "light",
     navigationBarBackgroundColor: "#fff",
