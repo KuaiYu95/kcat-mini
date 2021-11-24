@@ -1,0 +1,13 @@
+{
+  "miniprogramRoot": "./",
+  "projectname": "kcat",
+  "description": "kcat",
+  "appid": "wx60d893092e14e31a",
+  "setting": {
+    "urlCheck": true,
+    "es6": false,
+    "postcss": false,
+    "minified": false
+  },
+  "compileType": "miniprogram"
+}
