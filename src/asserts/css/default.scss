@@ -1,0 +1,21 @@
+.m48 {
+  margin: 48px;
+}
+
+.df-ac-sb {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.box-shadow {
+  box-shadow: 0 0 10px 2px rgba(43, 18, 22, 0.1);
+}
+
+.box-shadow:hover {
+  box-shadow: 0 0 15px 7px rgba(43, 18, 22, 0.2);
+}
+
+.b-radius {
+  border-radius: 12px;
+}
