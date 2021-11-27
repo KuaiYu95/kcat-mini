@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { View, Text, Navigator } from "@tarojs/components";
 import Taro, { useDidShow, useReady } from '@tarojs/taro'
-import day from '../../util/day';
 import AdSwiper from '../../components/common/AdSwiper'
+import day from '../../util/day';
 
 import './user.scss'
 
@@ -50,12 +50,12 @@ const User = () => {
         </View>
         {/* <View className='func-nav-item b-radius box-shadow m30 p30 fs24'>
           <Navigator hoverClass='none' url='/subMy/mycat/mycat'>我 的 猫 舍</Navigator>
-        </View>
+        </View> */}
         <View className='func-nav-item b-radius box-shadow m30 p30 fs24'>
           <Navigator hoverClass='none' url='/subMy/mymap/mymap'>我 的 足 迹</Navigator>
-        </View> */}
-        {userInfo._id && <View className='tac bgdark fff b-radius box-shadow m30 p30 mt96 fs28' onClick={logout}>登 出</View>}
+        </View>
       </View>
+      {userInfo._id && <View className='tac bgdark fff b-radius box-shadow m30 p30 mt96 fs28' onClick={logout}>登 出</View>}
     </View>
   );
 };

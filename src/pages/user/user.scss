@@ -1,5 +1,6 @@
 .user-page {
   .user-info {
+    margin-bottom: 90px;
     .user-logo {
       width: 120px;
       height: 120px;
@@ -14,5 +15,10 @@
       color: #2b1216;
       flex-direction: column;
     }
+  }
+
+  .func-nav {
+    margin-top: 90px;
+    margin-bottom: 180px;
   }
 }

@@ -4,6 +4,7 @@ import { View } from "@tarojs/components";
 import { AtSearchBar, AtActivityIndicator } from 'taro-ui'
 import BlogList from '../../components/common/BlogList';
 import HomeSwiper from '../../components/private/HomeSwiper'
+import ktaro from '../../util/taro'
 import api from '../../api/index';
 import './index.scss'
 
@@ -32,9 +33,19 @@ const Index = () => {
     const userInfo = Taro.getStorageSync('userInfo')
     if (userInfo._id) {
       api.getBlogTags({}).then(res => {
-        setBlogTags(res.data)
+        const tags = {}
+        res.data.forEach(it => {
+          tags[+it.id] = it.title
+        })
+        setBlogTags(tags)
       })
     }
+  }
+  const handleDel = (_id, id) => {
+    api.delBlog({ _id, id }).then(res => {
+      ktaro.showToast(res.msg)
+      getBlogsData()
+    })
   }
   useDidShow(() => {
     getBlogsData()
@@ -46,14 +57,14 @@ const Index = () => {
 
   return (
     <View className='index-page'>
-      <HomeSwiper />
+      {/* <HomeSwiper /> */}
       <AtSearchBar
         value={searchVal}
         onChange={handleSearchChange}
         onConfirm={handleSearch}
         onActionClick={handleSearch}
       />
-      {blogList.length > 0 && <BlogList data={blogList} tags={blogTags} />}
+      {blogList.length > 0 && <BlogList data={blogList} tags={blogTags} onDel={handleDel} />}
       {loading && <AtActivityIndicator className='jcc m30' size={28} color='#13CE66' content='加载中...'></AtActivityIndicator>}
     </View>
   );

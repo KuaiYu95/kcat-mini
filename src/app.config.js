@@ -1,3 +1,10 @@
+/*
+ * @Author: yu.kuai
+ * @Date: 2021-11-27 20:35:51
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2021-11-27 23:05:31
+ * @Description: 
+ */
 export default {
   pages: [
     "pages/index/index",
@@ -7,7 +14,7 @@ export default {
   subpackages: [{
     "root": "subMy",
     "pages": [
-      // "mymap/mymap",
+      "mymap/mymap",
       // "mycat/mycat",
       "myblog/myblog"
     ]
