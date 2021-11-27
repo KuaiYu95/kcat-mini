@@ -1,0 +1,20 @@
+.blog-list {
+  padding-bottom: 40px;
+  .blog-author {
+    padding: 20px 0;
+  }
+  .blog-type {
+    padding-top: 20px;
+  }
+  .iconfont {
+    padding-right: 10px;
+  }
+  .opra-blog {
+    width: 80px;
+    right: 30px;
+    padding: 20px;
+    text-align: center;
+    background-color: #fff;
+    z-index: 10;
+  }
+}

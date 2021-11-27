@@ -3,11 +3,10 @@ import { useState, useEffect } from 'react'
 import { View } from "@tarojs/components";
 import { AtSearchBar, AtActivityIndicator } from 'taro-ui'
 import BlogList from '../../components/common/BlogList';
-import HomeSwiper from '../../components/private/HomeSwiper'
 import api from '../../api/index';
-import './index.scss'
+import './myblog.scss'
 
-const Index = () => {
+const MyBlog = () => {
   const [searchVal, setSearchVal] = useState('')
   const [blogList, setBlogList] = useState([]);
   const [blogTags, setBlogTags] = useState([]);
@@ -15,12 +14,7 @@ const Index = () => {
   const [pageSize, setPageSize] = useState(10);
   const [blogType, setBlogType] = useState('');
   const [loading, setLoading] = useState(false);
-  const handleSearchChange = (value) => {
-    setSearchVal(value)
-  }
-  const handleSearch = () => {
-    pageNum === 0 ? getBlogsData() : setPageNum(0)
-  }
+
   const getBlogsData = () => {
     setLoading(true)
     api.getBlogs({ pageNum, pageSize, searchVal, blogType }).then(res => {
@@ -45,18 +39,11 @@ const Index = () => {
   }, [pageNum])
 
   return (
-    <View className='index-page'>
-      <HomeSwiper />
-      <AtSearchBar
-        value={searchVal}
-        onChange={handleSearchChange}
-        onConfirm={handleSearch}
-        onActionClick={handleSearch}
-      />
+    <View className='myblog-page'>
       {blogList.length > 0 && <BlogList data={blogList} tags={blogTags} />}
       {loading && <AtActivityIndicator className='jcc m30' size={28} color='#13CE66' content='加载中...'></AtActivityIndicator>}
     </View>
   );
 };
 
-export default Index;
+export default MyBlog;

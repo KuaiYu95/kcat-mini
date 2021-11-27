@@ -3,10 +3,6 @@ import './index.scss';
 
 const data = [
   'https://kcat.site/wallpapers/upload_b934ce60620e83851418803383aa1e2e.jpg',
-  'https://kcat.site/wallpapers/upload_b934ce60620e83851418803383aa1e2e.jpg',
-  'https://kcat.site/wallpapers/upload_b934ce60620e83851418803383aa1e2e.jpg',
-  'https://kcat.site/wallpapers/upload_b934ce60620e83851418803383aa1e2e.jpg',
-  'https://kcat.site/wallpapers/upload_b934ce60620e83851418803383aa1e2e.jpg',
 ]
 
 const HomeSwiper = () => {

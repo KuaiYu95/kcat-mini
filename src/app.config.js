@@ -1,16 +1,22 @@
-/*
- * @Author: yu.kuai
- * @Date: 2021-11-24 11:50:40
- * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-11-24 15:21:02
- * @Description: 
- */
 export default {
   pages: [
-    "pages/login/login",
     "pages/index/index",
     "pages/user/user",
+    // "pages/cat/cat",
   ],
+  subpackages: [{
+    "root": "subMy",
+    "pages": [
+      // "mymap/mymap",
+      // "mycat/mycat",
+      "myblog/myblog"
+    ]
+  }, {
+    "root": "subLogin",
+    "pages": [
+      "login/login"
+    ]
+  }],
   window: {
     backgroundTextStyle: "light",
     navigationBarBackgroundColor: "#fff",
@@ -27,6 +33,11 @@ export default {
       iconPath: "./asserts/logos/home.png",
       selectedIconPath: "./asserts/logos/home-fill.png"
     }, {
+    //   pagePath: "pages/cat/cat",
+    //   text: "猫舍",
+    //   iconPath: "./asserts/logos/white-cat.png",
+    //   selectedIconPath: "./asserts/logos/orange-cat.png"
+    // }, {
       pagePath: "pages/user/user",
       text: "个人中心",
       iconPath: "./asserts/logos/user.png",

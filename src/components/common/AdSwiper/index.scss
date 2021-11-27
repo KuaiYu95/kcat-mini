@@ -1,9 +1,11 @@
 .ad-swiper {
   height: 180px;
-  margin: 30px;
-  border-radius: 8px;
-  overflow: hidden;
   box-shadow: 0 0 20px 15px #eee;
+
+  .swiper-item {
+    overflow: hidden;
+    border-radius: 12px;
+  }
 
   .swiper-img {
     width: 100%;

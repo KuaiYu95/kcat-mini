@@ -1,48 +1,63 @@
-import { useCallback } from "react";
-import { View, Text, Button, Image } from "@tarojs/components";
-import { useEnv, useNavigationBar, useModal, useToast } from "taro-hooks";
-import logo from "./hook.png";
+import { useState } from "react";
+import { View, Text, Navigator } from "@tarojs/components";
+import Taro, { useDidShow, useReady } from '@tarojs/taro'
+import day from '../../util/day';
+import AdSwiper from '../../components/common/AdSwiper'
 
 import './user.scss'
 
-const Index = () => {
-  const env = useEnv();
-  const [_, { setTitle }] = useNavigationBar({ title: "Taro Hooks" });
-  const [show] = useModal({
-    title: "Taro Hooks!",
-    showCancel: false,
-    confirmColor: "#8c2de9",
-    confirmText: "支持一下",
-    mask: true,
-  });
-  const [showToast] = useToast({ mask: true });
+const User = () => {
+  const [userInfo, setUserInfo] = useState({});
 
-  const handleModal = useCallback(() => {
-    show({ content: "不如给一个star⭐️!" }).then(() => {
-      showToast({ title: "点击了支持!" });
-    });
-  }, [show, showToast]);
+  const getUserInfo = async () => {
+    const user = Taro.getStorageSync('userInfo')
+    setUserInfo(user)
+  }
+
+  const logout = () => {
+    setUserInfo({})
+    Taro.clearStorage()
+  }
+
+  useReady(() => getUserInfo())
+
+  useDidShow(() => getUserInfo());
 
   return (
-    <View className="wrapper">
-      <Image className="logo" src={logo} />
-      <Text className="title">为Taro而设计的Hooks Library</Text>
-      <Text className="desc">
-        目前覆盖70%官方API. 抹平部分API在H5端短板. 提供近40+Hooks!
-        并结合ahook适配Taro!
-      </Text>
-      <View className="list">
-        <Text className="label">运行环境</Text>
-        <Text className="note">{env}</Text>
+    <View className='user-page'>
+      {userInfo._id ?
+        <View className='user-info df m30'>
+          <View className='user-logo' style={{ backgroundImage: `url(${userInfo.avatar})` }}></View>
+          <View className='user-name ml30 df-sa'>
+            <View className='fs28'>{userInfo.username}</View>
+            <View className='fs24'>
+              <Text>活跃：{day.fromNow(userInfo.timeStamp) || 0}</Text>
+            </View>
+          </View>
+        </View>
+        :
+        <View className='user-info df-ac m30'>
+          <View className='user-logo default-bgi'></View>
+          <View className='no-login-text ml30 df-sa fs28'>
+            <Navigator hoverClass='none' url='/subLogin/login/login'>未登录</Navigator>
+          </View>
+        </View>
+      }
+      {/* <AdSwiper /> */}
+      <View className='func-nav'>
+        <View className='func-nav-item b-radius box-shadow m30 p30 fs24'>
+          <Navigator hoverClass='none' url='/subMy/myblog/myblog'>我 的 博 客</Navigator>
+        </View>
+        {/* <View className='func-nav-item b-radius box-shadow m30 p30 fs24'>
+          <Navigator hoverClass='none' url='/subMy/mycat/mycat'>我 的 猫 舍</Navigator>
+        </View>
+        <View className='func-nav-item b-radius box-shadow m30 p30 fs24'>
+          <Navigator hoverClass='none' url='/subMy/mymap/mymap'>我 的 足 迹</Navigator>
+        </View> */}
+        {userInfo._id && <View className='tac bgdark fff b-radius box-shadow m30 p30 mt96 fs28' onClick={logout}>登 出</View>}
       </View>
-      <Button className="button" onClick={() => setTitle("Taro Hooks Nice!")}>
-        设置标题
-      </Button>
-      <Button className="button" onClick={handleModal}>
-        使用Modal
-      </Button>
     </View>
   );
 };
 
-export default Index;
+export default User;

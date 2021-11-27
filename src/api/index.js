@@ -1,12 +1,7 @@
-/*
- * @Author: yu.kuai
- * @Date: 2021-11-24 15:33:40
- * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-11-24 15:50:46
- * @Description: 
- */
-import Taro from '@tarojs/taro'
+import request from './request';
 
-export default () => {
-  // Taro.request()
+export default {
+  login: (data) => request.post('/wx-login', data),
+  getBlogs: (data) => request.get('/find-all-blogs', data),
+  getBlogTags: (data) => request.get('/find-blog-tags', data),
 }

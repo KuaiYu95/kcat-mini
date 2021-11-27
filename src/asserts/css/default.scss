@@ -1,5 +1,68 @@
+.m30 {
+  margin: 30px;
+}
+
+.p30 {
+  padding: 30px;
+}
+
+.ml30 {
+  margin-left: 30px;
+}
+
 .m48 {
   margin: 48px;
+}
+
+.m96 {
+  margin: 96px;
+}
+
+.mt96 {
+  margin-top: 96px;
+}
+
+.fw {
+  font-weight: bold;
+}
+
+.fs24 { 
+  font-size: 24px;
+}
+
+.fs28 { 
+  font-size: 28px;
+}
+
+.fs32 {
+  font-size: 32px;
+}
+
+.tac {
+  text-align: center;
+}
+
+.df {
+  display: flex;
+}
+
+.jcc {
+  justify-content: center;
+}
+
+.df-ac {
+  display: flex;
+  align-items: center;
+}
+
+.df-sa {
+  display: flex;
+  justify-content: space-around;
+}
+
+.df-sb {
+  display: flex;
+  justify-content: space-between;
 }
 
 .df-ac-sb {
@@ -17,5 +80,34 @@
 }
 
 .b-radius {
-  border-radius: 12px;
+  border-radius: 12px !important;
+}
+
+.pr {
+  position: relative;
+}
+
+.pa {
+  position: absolute;
+}
+
+.oh {
+  overflow: hidden !important;
+}
+
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.two-ell {
+  word-break: break-all;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  /*! autoprefixer: off */
+  -webkit-box-orient: vertical;
 }

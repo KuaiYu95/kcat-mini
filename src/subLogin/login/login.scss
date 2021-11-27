@@ -1,14 +1,13 @@
-.login {
+.login-page {
   text-align: center;
 
   .kcat-logo {
     width: 200px;
     height: 200px;
     display: inline-block;
-    background-size: 400px 400px;
-    background-position: -100px -100px;
+    background-size: contain;
     background-repeat: no-repeat;
-    background-image: url('../../asserts/logos/kcat.png');
+    background-image: url('../../asserts/logos/kcat.jpg');
   }
 
   .kcat-name {
@@ -33,7 +32,8 @@
   .login-submit {
     height: 92px;
     line-height: 92px;
-    margin-top: 96px;
+    font-size: 24px;
+    margin-bottom: 24px;
   }
 
   .login-submit:active {

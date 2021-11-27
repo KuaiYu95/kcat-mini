@@ -1,6 +1,25 @@
 import Taro from '@tarojs/taro'
 
 export default {
+  checkSession: () => {
+    return new Promise((res) => {
+      Taro.checkSession({
+        success: () => res(),
+        fail: () => {
+          this.showToast('登录已过期，请重新登录', 'none', () => {
+            this.removeStorage('userInfo')
+            this.removeStorage('token')
+            this.jumpPage('/subLogin/login/login')
+          })
+        }
+      })
+    })
+  },
+  jumpPage: (url, type = 'navigateTo') => {
+    Taro[type]({
+      url
+    })
+  },
   getUserProfile: (desc) => {
     return new Promise((res, rej) => {
       Taro.getUserProfile({
@@ -27,11 +46,18 @@ export default {
       })
     })
   },
-  showToast: (t = '成功', i = 'success', d = 1500) => {
+  showToast: (t = '成功', i = 'success', f = () => {}, d = 1500) => {
     Taro.showToast({
       title: t,
       icon: i,
-      duration: d
+      duration: d,
+      success: () => setTimeout(f, d)
+    })
+  },
+  showLoading: (t = '成功') => {
+    Taro.showLoading({
+      title: t,
+      mask: true
     })
   },
   setStorage: (key, data) => {
@@ -39,5 +65,39 @@ export default {
       key,
       data
     })
-  }
+  },
+  removeStorage: (key) => {
+    Taro.removeStorage({
+      key
+    })
+  },
+  getStorage: (key) => {
+    return new Promise(result => {
+      Taro.getStorage({
+        key,
+        success: res => result(res.data)
+      })
+    })
+  },
+  showModal: ({
+    title,
+    content,
+    success,
+    fail,
+    showCancel = true,
+    cancelText = '取消',
+    confirmText = '确定',
+  }) => {
+    Taro.showModal({
+      title,
+      content,
+      showCancel,
+      success,
+      fail,
+      cancelColor: '#bbb5ac',
+      cancelText,
+      confirmColor: '#2b1216',
+      confirmText,
+    })
+  },
 }
