@@ -26,7 +26,7 @@ const BlogList = ({ data, tags = {}, onDel }) => {
   return (
     <View className='blog-list'>
       {data.map(it =>
-        <View className='blog-item box-shadow b-radius m30 p30 pr' key={it._id}>
+        <View className='blog-item bb p30 pr' key={it._id}>
           <View className='blog-title fs32 df-sb fw'>
             <Text>{it.title}</Text>
             {userInfo._id === it.userId && <Text className='iconfont icon-gengduo fs32' onClick={() => handleShowDel(it._id)}></Text>}

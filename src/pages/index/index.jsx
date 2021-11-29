@@ -9,11 +9,11 @@ import api from '../../api/index';
 import './index.scss'
 
 const Index = () => {
+  const pageSize = 10;
   const [searchVal, setSearchVal] = useState('')
   const [blogList, setBlogList] = useState([]);
   const [blogTags, setBlogTags] = useState([]);
   const [pageNum, setPageNum] = useState(0);
-  const [pageSize, setPageSize] = useState(10);
   const [blogType, setBlogType] = useState('');
   const [loading, setLoading] = useState(false);
   const handleSearchChange = (value) => {

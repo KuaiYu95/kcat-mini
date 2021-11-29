@@ -3,11 +3,19 @@
 }
 
 .bgdark {
-  background-color: #2b1216;
+  background: #2b1216 !important;
+}
+
+.alink {
+  color: #12aa9c;
 }
 
 .gray {
   color: #bbb5ac;
+}
+
+.bgagray {
+  background-color: rgba(187, 181, 172, 0.2);
 }
 
 .eee {
@@ -16,4 +24,8 @@
 
 .fff {
   color: #fff;
+}
+
+.bgfff {
+  background-color: #fff;
 }

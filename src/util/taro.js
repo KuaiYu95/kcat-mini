@@ -1,6 +1,26 @@
 import Taro from '@tarojs/taro'
 
 export default {
+  chooseImg: ({
+    count
+  }) => {
+    return new Promise((result) => {
+      Taro.chooseImage({
+        count,
+        sizeType: 'compressed',
+        success: (res) => {
+          if (res.errMsg === "chooseImage:ok") {
+            result(res.tempFilePaths)
+          } else {
+            this.showToast(res.errMsg, 'none')
+          }
+        },
+        fail: () => {
+          this.showToast('上传出现问题，请检查网络', 'none')
+        }
+      })
+    })
+  },
   checkSession: () => {
     return new Promise((res) => {
       Taro.checkSession({
@@ -82,8 +102,9 @@ export default {
   showModal: ({
     title,
     content,
-    success,
-    fail,
+    success = () => {},
+    fail = () => {},
+    complete = () => {},
     showCancel = true,
     cancelText = '取消',
     confirmText = '确定',
@@ -94,6 +115,7 @@ export default {
       showCancel,
       success,
       fail,
+      complete,
       cancelColor: '#bbb5ac',
       cancelText,
       confirmColor: '#2b1216',

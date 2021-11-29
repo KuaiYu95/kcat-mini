@@ -1,0 +1,74 @@
+.cat-item {
+  .cat-avatar {
+    width: 100px;
+    height: 100px;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  .cat-info {
+    .cat-content {
+      color: #000;
+    }
+
+    .cat-pictures {
+      flex-wrap: wrap;
+      margin-top: 20px;
+      width: calc(100vw - 190px);
+
+      .cat-pic {
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+        margin-top: 10px;
+      }
+
+      .cat-pic-1 {
+        height: 500px;
+      }
+
+      .cat-pic-2 {
+        width: calc((100vw - 190px - 10px) / 2);
+        height: calc((100vw - 190px - 10px) / 2);
+      }
+
+      .cat-pic-2:nth-child(2n + 1) {
+        margin-right: 10px;
+      }
+
+      .cat-pic-gt3 {
+        width: calc((100vw - 190px - 20px) / 3);
+        height: calc((100vw - 190px - 20px) / 3);
+      }
+
+      .cat-pic-gt3:nth-child(3n + 2) {
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+    }
+
+    .cat-time {
+      .opra-cat {
+        right: 50px;
+        top: 20px;
+        z-index: 10;
+
+        .opra-cat-btn {
+          width: 100px;
+        }
+      }
+    }
+
+    .cat-likes, .cat-comments {
+      padding: 4px 10px;
+    }
+
+    .cat-likes, .comment-item {
+      line-height: 50px;
+    }
+
+    .comment-input {
+      padding: 10px 20px;
+    }
+  }
+}

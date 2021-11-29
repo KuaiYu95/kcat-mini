@@ -14,7 +14,7 @@ const MyBlog = () => {
   const [blogList, setBlogList] = useState([]);
   const [blogTags, setBlogTags] = useState({});
   const [pageNum, setPageNum] = useState(0);
-  const [blogType, setBlogType] = useState(0);
+  const [blogType, setBlogType] = useState(-1);
   const [loading, setLoading] = useState(false);
   const [showTagsSelect, setShowTagsSelect] = useState(false)
   const handleSearchChange = (value) => {
@@ -33,7 +33,7 @@ const MyBlog = () => {
   }
   const getBlogsData = () => {
     setLoading(true)
-    api.getUserBlogs({ pageNum, pageSize, searchVal, blogType }).then(res => {
+    api.getUserBlogs({ pageNum, pageSize, searchVal, blogType: blogType == -1 ? '' : blogType }).then(res => {
       setLoading(false)
       setBlogList(res.data)
     })
@@ -43,8 +43,9 @@ const MyBlog = () => {
     if (userInfo._id) {
       api.getBlogTags({}).then(res => {
         const tags = {}
+        tags[-1] = '全部'
         res.data.forEach(it => {
-          tags[+it.id] = it.title
+          tags[it.id] = it.title
         })
         setBlogTags(tags)
       })
@@ -66,7 +67,7 @@ const MyBlog = () => {
 
   return (
     <View className='myblog-page pr'>
-      <View className='df-ac-sb p30'>
+      <View  View className='df-ac-sb p30'>
         <AtSearchBar
           className='fg1'
           value={searchVal}

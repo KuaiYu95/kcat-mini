@@ -1,3 +1,3 @@
 export default {
-  navigationBarTitleText: "舍 长",
+  navigationBarTitleText: "舍长",
 }
