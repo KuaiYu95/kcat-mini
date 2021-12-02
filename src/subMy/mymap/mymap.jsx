@@ -17,7 +17,7 @@ const MyMap = () => {
   return (
     <View className='mymap-page'>
       <AtNoticebar icon='volume-plus'>
-        请通过 PC 端打开链接 https://kcat.site/ky/map 添加个人足迹
+        小程序仅供查看，如需记录足迹，请前往 https://kcat.site/ky 
       </AtNoticebar>
       {makersList.length > 0 ? <View className='map-maker'>
         {makersList.map(maker =>

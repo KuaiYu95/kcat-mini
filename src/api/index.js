@@ -10,6 +10,7 @@ export default {
   addCatLike: (data) => request.post('/cat/like', data),
   getMap: (data) => request.get('/map/get-map-maker', data),
   getBlogs: (data) => request.get('/find-all-blogs', data),
+  getBlogDetail: (id) => request.get(`/find-blog/${id}`),
   getBlogTags: (data) => request.get('/find-blog-tags', data),
   getUserBlogs: (data) => request.get('/find-blogs', data),
   delBlog: ({

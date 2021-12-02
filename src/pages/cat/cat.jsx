@@ -22,7 +22,11 @@ const Cat = () => {
   }
 
   const onAdd = () => {
-    ktaro.jumpPage('/subCat/add-cat/add-cat')
+    ktaro.checkSession().then(res => {
+      if (res) {
+        ktaro.jumpPage('/subCat/add-cat/add-cat')
+      }
+    })
   }
 
   useDidShow(() => {

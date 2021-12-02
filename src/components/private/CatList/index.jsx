@@ -1,4 +1,4 @@
-import Taro from '@tarojs/taro'
+import Taro, { useRouter } from '@tarojs/taro'
 import { useState, useEffect } from 'react'
 import { View, Image, Text, Input } from "@tarojs/components";
 import day from '../../../util/day'
@@ -8,6 +8,8 @@ import './index.scss'
 
 const CatList = ({ list }) => {
   const userinfo = Taro.getStorageSync('userInfo')
+  const router = useRouter()
+  const isHide = router.path === "/subMy/mycat/mycat"
 
   const [cats, setCats] = useState([])
   const [content, setContent] = useState('')
@@ -47,14 +49,22 @@ const CatList = ({ list }) => {
 
   const handleLike = () => {
     api.addCatLike({ id: showOpraCatId }).then(res => {
+      const isReLike = res.msg === '取消成功'
       const newCats = cats.map(cat => {
         const { _id, likes } = cat
-        if (_id === showOpraCatId) {
+        if (_id === showOpraCatId && !isReLike) {
           return {
             ...cat,
             likes: [...likes, {
               username: userinfo.username, userId: userinfo._id
             }]
+          }
+        }
+        if (_id === showOpraCatId) {
+          let newLikes = likes.filter(l => l.userId !== userinfo._id)
+          return {
+            ...cat,
+            likes: newLikes
           }
         }
         return cat
@@ -113,14 +123,14 @@ const CatList = ({ list }) => {
         </View>}
         <View className='cat-time df-ac-sb mt20 mb20 pr'>
           <View className='gray fs24'>{day.fromNow(it.timeStamp, false)}</View>
-          <View className='iconfont icon-gengduo fs40 gray' onClick={() => setShowOpraCatId(showOpraCatId === it._id ? '' : it._id)}></View>
+          {/* <View className='iconfont icon-gengduo fs40 gray' onClick={() => setShowOpraCatId(showOpraCatId === it._id ? '' : it._id)}></View> */}
           {it._id === showOpraCatId && <View className='opra-cat pa b-radius box-shadow df-ac-sa bgfff p20'>
-            <View className='opra-cat-btn dark tac' onClick={handleLike}>点赞</View>
-            {userinfo._id === it.userId && <View className='opra-cat-btn dark tac' onClick={handleDel}>删除</View>}
+            <View className='opra-cat-btn dark tac' onClick={handleLike}>{it.likes.every(l => l.userId !== userinfo._id) ? '点赞' : '取消'}</View>
+            <View className='opra-cat-btn dark tac' onClick={handleDel}>删除</View>
           </View>}
         </View>
-        {(it.likes.length > 0 || it.comments.length > 0) && <View className='bgagray b-radius'>
-          {it.likes.length > 0 && <View className='cat-likes bb'>
+        {(it.likes.length > 0 || it.comments.length > 0) && !isHide && <View className='bgagray b-radius'>
+          {it.likes.length > 0 && <View className={it.comments.length > 0 ? 'cat-likes bb' : 'cat-likes'}>
             <Text className='iconfont icon-baokuan- fs32 mr20'></Text>
             {it.likes.map((like, idx) =>
               <Text key={like._id}>
@@ -142,7 +152,7 @@ const CatList = ({ list }) => {
             )}
           </View>}
         </View>}
-        <View className='comment-input mt20 mb20 b-radius box-shadow'>
+        {!isHide && <View className='comment-input mt20 mb20 b-radius box-shadow'>
           <Input
             className='fs28'
             placeholder={selectComment.replyUserId ? `回复${selectComment.replyUsername}：` : '说点什么吧...'}
@@ -154,7 +164,7 @@ const CatList = ({ list }) => {
             onBlur={() => setFocus(false)}
             onConfirm={handleAddComment}
           />
-        </View>
+        </View>}
       </View>
     </View>
   )

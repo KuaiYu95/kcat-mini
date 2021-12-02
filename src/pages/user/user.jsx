@@ -45,15 +45,15 @@ const User = () => {
       }
       {/* <AdSwiper /> */}
       <View className='func-nav'>
-        {/* <View className='func-nav-item b-radius box-shadow m30 p30 fs24'>
+        <View className='func-nav-item b-radius box-shadow m30 p30 fs24'>
           <Navigator hoverClass='none' url='/subMy/myblog/myblog'>我 的 博 客</Navigator>
-        </View> */}
+        </View>
         <View className='func-nav-item b-radius box-shadow m30 p30 fs24'>
           <Navigator hoverClass='none' url='/subMy/mycat/mycat'>我 的 猫 舍</Navigator>
         </View>
-        {/* <View className='func-nav-item b-radius box-shadow m30 p30 fs24'>
+        <View className='func-nav-item b-radius box-shadow m30 p30 fs24'>
           <Navigator hoverClass='none' url='/subMy/mymap/mymap'>我 的 足 迹</Navigator>
-        </View> */}
+        </View>
       </View>
       {userInfo._id && <View className='tac bgdark fff b-radius box-shadow m30 p30 mt96 fs28' onClick={logout}>登 出</View>}
     </View>

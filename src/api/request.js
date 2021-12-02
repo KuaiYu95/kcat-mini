@@ -23,6 +23,10 @@ class httpRequest {
       Taro.request({
         ...option,
         success: (result) => {
+          if (result.statusCode === 401) {
+            ktaro.showToast('未登录', 'none', () => ktaro.jumpPage('/subLogin/login/login'))
+            return;
+          }
           if (result.data.code === 300 || result.data.code === 400) {
             ktaro.showToast(result.data.msg, 'none')
             return;

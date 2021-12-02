@@ -1,6 +1,6 @@
 import Taro from '@tarojs/taro'
 
-export default {
+const ktaro = {
   chooseImg: ({
     count
   }) => {
@@ -12,11 +12,11 @@ export default {
           if (res.errMsg === "chooseImage:ok") {
             result(res.tempFilePaths)
           } else {
-            this.showToast(res.errMsg, 'none')
+            ktaro.showToast(res.errMsg, 'none')
           }
         },
         fail: () => {
-          this.showToast('上传出现问题，请检查网络', 'none')
+          ktaro.showToast('上传出现问题，请检查网络', 'none')
         }
       })
     })
@@ -24,12 +24,12 @@ export default {
   checkSession: () => {
     return new Promise((res) => {
       Taro.checkSession({
-        success: () => res(),
+        success: () => res(true),
         fail: () => {
-          this.showToast('登录已过期，请重新登录', 'none', () => {
-            this.removeStorage('userInfo')
-            this.removeStorage('token')
-            this.jumpPage('/subLogin/login/login')
+          ktaro.showToast('登录已过期，请重新登录', 'none', () => {
+            ktaro.removeStorage('userInfo')
+            ktaro.removeStorage('token')
+            ktaro.jumpPage('/subLogin/login/login')
           })
         }
       })
@@ -123,3 +123,5 @@ export default {
     })
   },
 }
+
+export default ktaro

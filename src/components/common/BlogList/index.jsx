@@ -23,10 +23,17 @@ const BlogList = ({ data, tags = {}, onDel }) => {
   const handleShowDel = (id) => {
     setDelId(id)
   }
+  const viewDetail = (id) => {
+    if (userInfo._id) {
+      ktaro.jumpPage(`/pages/blogInfo/blogInfo?id=${id}`)
+    } else {
+      ktaro.showToast('未登录', 'none', () => ktaro.jumpPage('/subLogin/login/login'))
+    }
+  }
   return (
     <View className='blog-list'>
       {data.map(it =>
-        <View className='blog-item bb p30 pr' key={it._id}>
+        <View className='blog-item bb p30 pr' key={it._id} onClick={() => viewDetail(it._id)}>
           <View className='blog-title fs32 df-sb fw'>
             <Text>{it.title}</Text>
             {userInfo._id === it.userId && <Text className='iconfont icon-gengduo fs32' onClick={() => handleShowDel(it._id)}></Text>}

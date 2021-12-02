@@ -1,7 +1,7 @@
 import Taro, { useDidShow } from '@tarojs/taro'
 import { useState, useEffect } from 'react'
 import { View, Text } from "@tarojs/components";
-import { AtSearchBar, AtActivityIndicator } from 'taro-ui'
+import { AtSearchBar, AtActivityIndicator, AtNoticebar } from 'taro-ui'
 import BlogList from '../../components/common/BlogList';
 import ktaro from '../../util/taro'
 import NoData from '../../components/common/NoData'
@@ -67,6 +67,9 @@ const MyBlog = () => {
 
   return (
     <View className='myblog-page pr'>
+      <AtNoticebar icon='volume-plus'>
+        小程序仅供阅读，如需发布博客，请前往 https://kcat.site/ky 
+      </AtNoticebar>
       <View  View className='df-ac-sb p30'>
         <AtSearchBar
           className='fg1'
