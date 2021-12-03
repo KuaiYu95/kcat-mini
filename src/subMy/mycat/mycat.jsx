@@ -1,8 +1,9 @@
-import Taro, { useDidShow } from '@tarojs/taro'
-import { useState, useEffect } from 'react'
+import { useDidShow } from '@tarojs/taro'
+import { useState } from 'react'
 import { View } from "@tarojs/components";
 import { AtActivityIndicator } from 'taro-ui'
 import CatList from '../../components/private/CatList'
+import NoData from '../../components/common/NoData';
 import ktaro from '../../util/taro'
 import api from '../../api/index';
 import './mycat.scss'
@@ -14,7 +15,9 @@ const MyCat = () => {
   const [catList, setCatList] = useState([])
 
   const getUserCatsList = () => {
+    setLoading(true)
     api.getUserCatsList({ pageNum, pageSize }).then(res => {
+      setLoading(false)
       setCatList(res.data)
     })
   }
@@ -22,9 +25,10 @@ const MyCat = () => {
   useDidShow(() => {
     getUserCatsList()
   })
+  
   return (
     <View className='mycat-page'>
-      <CatList list={catList} /> 
+      {catList.length > 0 ? <CatList list={catList} /> : <NoData />}
       {loading && <AtActivityIndicator className='jcc m30' size={28} color='#13CE66' content='加载中...'></AtActivityIndicator>}
     </View>
   );

@@ -19,8 +19,15 @@ const Cat = () => {
       pictures,
       content,
     }
-    api.addCat(data).then(res => {
-      console.log(res)
+    if (!content) {
+      ktaro.showToast('请输入此刻的想法！')
+      return;
+    } 
+    if (!pictures.length) {
+      ktaro.showToast('请上传喵主照片！')
+      return;
+    }
+    api.addCat(data).then(() => {
       ktaro.showToast('发布成功', 'success', () => {
         ktaro.jumpPage('/pages/cat/cat', 'switchTab')
       })

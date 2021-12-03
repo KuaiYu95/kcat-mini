@@ -25,6 +25,7 @@ const UploadImg = ({ onChange }) => {
     const result = JSON.parse(uploadimg.data)
     if (result.code != 200) {
       ktaro.showToast('上传失败', 'none')
+      setLoading(false)
     } else {
       const imgUrl = result.data.path
       const idx = imgPaths.indexOf(path) + 1

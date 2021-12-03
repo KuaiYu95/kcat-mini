@@ -1,0 +1,23 @@
+.h5-a {
+  color: #10aec2;
+}
+
+.h5-p .h5-code {
+  padding: 4px 8px;
+  border-radius: 4px;
+  display: inline-block;
+  color: #eea08c;
+  background-color: #e2e1e4;
+}
+
+.h5-pre {
+  padding: 30px;
+  border-radius: 4px;
+  overflow: scroll;
+  color: #fff;
+  background-color: #1f2623;
+
+  .h5-code {
+    line-height: 48px;
+  }
+}

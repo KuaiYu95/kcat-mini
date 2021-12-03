@@ -22,7 +22,8 @@ const CatList = ({ list }) => {
     setContent(event.detail.value)
   }
 
-  const handleFocus = ({ content: replyContent, userId: replyUserId, username: replyUsername }) => {
+  const handleFocus = ({ content: replyContent, userId: replyUserId, username: replyUsername }, _id) => {
+    setSelectCatId(_id)
     setSelectComment({ replyContent, replyUserId, replyUsername })
     setFocus(true)
   }
@@ -123,10 +124,10 @@ const CatList = ({ list }) => {
         </View>}
         <View className='cat-time df-ac-sb mt20 mb20 pr'>
           <View className='gray fs24'>{day.fromNow(it.timeStamp, false)}</View>
-          {/* <View className='iconfont icon-gengduo fs40 gray' onClick={() => setShowOpraCatId(showOpraCatId === it._id ? '' : it._id)}></View> */}
+          <View className='iconfont icon-gengduo fs40 gray' onClick={() => setShowOpraCatId(showOpraCatId === it._id ? '' : it._id)}></View>
           {it._id === showOpraCatId && <View className='opra-cat pa b-radius box-shadow df-ac-sa bgfff p20'>
             <View className='opra-cat-btn dark tac' onClick={handleLike}>{it.likes.every(l => l.userId !== userinfo._id) ? '点赞' : '取消'}</View>
-            <View className='opra-cat-btn dark tac' onClick={handleDel}>删除</View>
+            {it._id === userinfo._id && <View className='opra-cat-btn dark tac' onClick={handleDel}>删除</View>}
           </View>}
         </View>
         {(it.likes.length > 0 || it.comments.length > 0) && !isHide && <View className='bgagray b-radius'>
@@ -146,7 +147,7 @@ const CatList = ({ list }) => {
                   {comment.replyUserId ? <Text>
                     &nbsp;回复&nbsp;<Text className='alink'>{comment.replyUsername}</Text>：
                   </Text> : '：'}
-                  <Text className='dark' onClick={() => handleFocus(comment)}>{comment.content}</Text>
+                  <Text className='dark' onClick={() => handleFocus(comment, it._id)}>{comment.content}</Text>
                 </View>
               </View>
             )}
@@ -154,12 +155,13 @@ const CatList = ({ list }) => {
         </View>}
         {!isHide && <View className='comment-input mt20 mb20 b-radius box-shadow'>
           <Input
+            id={'input' + it._id}
             className='fs28'
-            placeholder={selectComment.replyUserId ? `回复${selectComment.replyUsername}：` : '说点什么吧...'}
+            placeholder={selectComment.replyUserId && it._id === selectCatId ? `回复${selectComment.replyUsername}：` : '说点什么吧...'}
             confirmType='done'
             value={content}
             onInput={handleKeyword}
-            focus={focus}
+            focus={focus && it._id === selectCatId}
             onFocus={() => setSelectCatId(it._id)}
             onBlur={() => setFocus(false)}
             onConfirm={handleAddComment}
