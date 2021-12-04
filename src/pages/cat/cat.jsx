@@ -40,11 +40,11 @@ const Cat = () => {
 
   return (
     <View className='cat-page pr'>
-      <View className='add-fab pf'>
+      {/* <View className='add-fab pf'>
         <AtFab className='bgdark' onClick={onAdd}>
           <Text className='at-fab__icon at-icon at-icon-add'></Text>
         </AtFab>
-      </View>
+      </View> */}
       <CatList list={catList} />
       {loading && <AtActivityIndicator className='jcc m30' size={28} color='#13CE66' content='加载中...'></AtActivityIndicator>}
     </View>

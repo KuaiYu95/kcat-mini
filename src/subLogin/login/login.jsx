@@ -17,7 +17,7 @@ const Login = () => {
     const { token, userInfo, needRegsiter } = result.data 
     ktaro.setStorage('userInfo', userInfo)
     if (needRegsiter) {
-      ktaro.jumpPage('/pages/register/register')
+      ktaro.jumpPage('/subLogin/register/register')
       return;
     }
     ktaro.setStorage('token', token)
