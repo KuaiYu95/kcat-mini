@@ -1,6 +1,12 @@
 export default {
   pages: [
+    "pages/user/user",
     "pages/index/index",
+<<<<<<< Updated upstream
+=======
+    "pages/register/register",
+    // "pages/cat/cat",
+>>>>>>> Stashed changes
     "pages/blogInfo/blogInfo",
     "pages/cat/cat",
     "pages/user/user",

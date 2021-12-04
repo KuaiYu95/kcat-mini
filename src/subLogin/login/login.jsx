@@ -14,8 +14,12 @@ const Login = () => {
     const result = await api.login({
       username, avatar, code, timeStamp: new Date().getTime(), platform: 'wxapp', appid: project.appid
     })
-    const { token, userInfo } = result.data
+    const { token, userInfo, needRegsiter } = result.data 
     ktaro.setStorage('userInfo', userInfo)
+    if (needRegsiter) {
+      ktaro.jumpPage('/pages/register/register')
+      return;
+    }
     ktaro.setStorage('token', token)
     ktaro.showToast(result.msg, 'success', () => ktaro.jumpPage('/pages/index/index', 'switchTab'))
   }

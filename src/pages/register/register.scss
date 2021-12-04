@@ -1,0 +1,17 @@
+.register-page {
+  text-align: center;
+
+  .kcat-logo {
+    width: 200px;
+    height: 200px;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url('../../asserts/logos/kcat.jpg');
+  }
+
+  .kcat-name {
+    font-size: 32px;
+    font-weight: bold;
+  }
+}
