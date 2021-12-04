@@ -3,6 +3,7 @@ import request from './request';
 export default {
   login: (data) => request.post('/wx-login', data),
   register: (data) => request.post('/wx-register', data),
+  getAllMaps: () => request.get('/map/get-all-map'),
   getCatsList: (data) => request.get('/cat/list', data),
   getUserCatsList: (data) => request.get('/cat/user-list', data),
   addCat: (data) => request.post('/cat/add', data),

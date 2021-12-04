@@ -1,6 +1,7 @@
 export default {
   pages: [
     "pages/index/index",
+    "pages/map/map",
     "pages/user/user",
     "pages/blogInfo/blogInfo",
     "pages/cat/cat",
@@ -43,7 +44,12 @@ export default {
       pagePath: "pages/cat/cat",
       text: "猫舍",
       iconPath: "./asserts/logos/white-cat.png",
-      selectedIconPath: "./asserts/logos/orange-cat.png"
+      selectedIconPath: "./asserts/logos/black-cat.png"
+    }, {
+      pagePath: "pages/map/map",
+      text: "足迹",
+      iconPath: "./asserts/logos/foot.png",
+      selectedIconPath: "./asserts/logos/foot-fill.png"
     }, {
       pagePath: "pages/user/user",
       text: "个人中心",
